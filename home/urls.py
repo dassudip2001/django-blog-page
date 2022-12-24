@@ -8,11 +8,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('',views.index, name="home"),
-    path('login',views.login, name="login"),
+    path('',views.index, name="index"),
+    path('post',views.post, name="home page"),
+
+    path('login/',views.LoginPage,name='login'),
     path('register',views.register, name="register"),
-
-
+    path('logout/',views.LogoutPage,name='logout'),
 
 ]
 
