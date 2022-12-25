@@ -57,6 +57,7 @@ def register(request):
 
             my_user=User.objects.create_user(uname,email,pass1)
             my_user.save()
+            messages.success(request, 'Your message has been sent!')
             return redirect('login')
     return render(request, 'register.html')
 
@@ -68,6 +69,7 @@ def LoginPage(request):
         user=authenticate(request,username=username,password=pass1)
         if user is not None:
             login(request,user)
+            messages.success(request, 'Login successfully!')
             return redirect('/')
         else:
             return HttpResponse ("Username or Password is incorrect!!!")
@@ -88,4 +90,5 @@ def LoginPage(request):
 
 def LogoutPage(request):
     logout(request)
+    messages.success(request, 'Logout successfully!')
     return redirect('/')
