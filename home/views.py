@@ -37,12 +37,27 @@ def about_us(request):
 
 def dashboard_page(request):
     if request.user.is_authenticated:
-      return render(request, 'dashboard.html')
+      posts=Post.objects.all()
+      return render(request, 'dashboard.html',{
+        'posts':posts
+    })
     else:
         return render(request, 'register.html')
-
+# create new Post
 def post(request):
-    return render(request, 'post.html')
+    if request.user.is_authenticated:
+       if request.method == 'POST':
+          title=request.POST.get('title')
+          photo=request.POST.get('photo')
+          Body=request.POST.get('Body')
+          post=Post(title=title,photo=photo, Body=Body, 
+          date=datetime.today())
+          post.save()
+          messages.success(request, 'Post Created Successfully!')
+          return render(request, 'dashboard.html')
+    else:
+        return render(request, 'register.html')
+    
 # login form
 def register(request):
     if request.method=='POST':
