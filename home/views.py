@@ -13,7 +13,21 @@ def index(request):
         'posts':posts
     })
 
-# home page 
+# contat us
+def contact_us(request):
+    return render(request, 'contact/contact.html')
+# about us
+def about_us(request):
+    return render(request, 'about.html') 
+# dashboard
+
+def dashboard_page(request):
+    if request.user.is_authenticated:
+      return render(request, 'dashboard.html',{
+        'posts':posts
+       })
+    else:
+        return render(request, 'register.html')
 
 def post(request):
     return render(request, 'post.html')
@@ -42,7 +56,7 @@ def LoginPage(request):
         user=authenticate(request,username=username,password=pass1)
         if user is not None:
             login(request,user)
-            return redirect('post')
+            return redirect('/')
         else:
             return HttpResponse ("Username or Password is incorrect!!!")
 

@@ -47,13 +47,16 @@
         <title>
           {% block title %}{% endblock title %} | Blog
         </title>
-        <link rel="icon" href=" {% static 'icon/logo.png' %} " />
+        <link rel="icon" href=" {% static 'logo/logo.png' %} " />
       </head>
       <body>
-        <nav class="navbar navbar-expand-lg navbar-default bg-dark">
+        <nav
+      class="navbar navbar-expand-lg navbar-dark"
+      style="background-color: #547faa"
+    >
           <div class="container">
             <a class="navbar-brand" href="#">
-              <img src="../static/logo/sudip.png" alt="" height="70px"
+              <img src="../static/logo/logo.png" alt="" height="70px"
             /></a>
             <button
               class="navbar-toggler"
@@ -73,29 +76,47 @@
                     >Blog</a
                   >
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="#"
                     >Home</a
                   >
-                </li>
+                </li> -->
+
+                {% if request.user.is_authenticated %}
                 <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="#"
                     >create Blog</a
                   >
                 </li>
-                <!-- <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#"
-                    >Publication</a
+                
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="dashboard_page"
+                    >Dashboard</a
                   >
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#"
-                    >About University</a
-                  >
-                </li> -->
               </ul>
               <form class="d-flex">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                  <li class="nav-item">
+                    <a href="logout">
+                      <button type="button" class="btn btn-outline-light float-end mx-2">
+                         Logout
+                      </button></a
+                    >
+                  </li>
+                 {% else %}
+                 <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="contact_us"
+                    >Contact Us</a
+                  >
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="about_us"
+                    >About Us</a
+                  >
+                </li>
                   <li>
                     <a href="/admin">
                   <button type="button" class="btn btn-outline-light float-end mx-2">
@@ -117,7 +138,7 @@
                       </button></a
                     >
                   </li>
-                  
+                  {% endif %}
                 </ul>
                 
               </form>
@@ -141,29 +162,7 @@
           </button>
         </div>
         {% endfor %} {% endif %} {% block body %} {% endblock body %}
-        <!-- FOOTER -->
-        <footer
-          class="w-100 py-4 flex-shrink-0 mt-2"
-          style="background-color: #212529"
-        >
-          <div class="container py-4">
-            <div class="row gy-4 gx-5">
-              <div class="col-lg-4 col-md-6">
-                <h5 class="h1 text-white">FB.</h5>
-                <p class="small text-muted">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                  do eiusmod tempor incididunt.
-                </p>
-                <p class="small text-muted mb-0">
-                  &copy; Copyrights. All rights reserved.
-                  <a class="text-primary" href="#">Sudip Das</a>
-                </p>
-              </div>
-              
-              
-            </div>
-          </div>
-        </footer>
+        
 
         <!-- Footer -->
         <!-- Optional JavaScript -->

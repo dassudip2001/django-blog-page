@@ -1,5 +1,32 @@
 {% extends 'index.html' %}
 {% block title %}Home{% endblock title %}
 {% block body %}
- <h1>Post Page</h1>
+<!-- cards -->
+{% for student in posts %}
+<div class="container mt-2">
+  <div class="card-group">
+    <div class="card">
+      <div class="card-title">
+        <h5 class="mt-4 m-4">{{ student.title }}</h5>
+      </div>
+      <img
+        src="{{student.photo.url}}"
+        class="card-img-top"
+        alt="..."
+        height="90%"
+        width="400px"
+      />
+      <div class="card-body">
+        <h5 class="card-title"></h5>
+        <!-- <td class="col-md-1"><img id="IMG" src="  ></td>  -->
+        <p class="card-text">
+          <small class="text-muted">{{ student.Body | safe }} </small>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endfor %}
 {% endblock body %}
