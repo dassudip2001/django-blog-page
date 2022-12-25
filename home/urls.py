@@ -11,7 +11,7 @@ urlpatterns = [
     path('',views.index, name="index"),
     path('post',views.post, name="home page"),
     path('dashboard_page',views.dashboard_page,name='dashboard_page'),
-    path('contact_us',views.contact_us,name='contact_us'),
+    path("contact", views.contact, name='contact'), 
     path('about_us',views.about_us,name='about_us'),
 
 

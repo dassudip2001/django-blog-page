@@ -1,6 +1,9 @@
 from django.shortcuts import render,HttpResponse,redirect
 from .models import Post
 from django.contrib.auth.models import User
+from .models import Contact
+from datetime import datetime
+from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 
@@ -13,8 +16,19 @@ def index(request):
         'posts':posts
     })
 
-# contat us
-def contact_us(request):
+# contact us
+def contact(request):
+    if request.method == "POST":
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        desc = request.POST.get('desc')
+        print(name, email, phone, desc)
+        contact = Contact(name=name, email=email, phone=phone,
+                          desc=desc, date=datetime.today() )
+        contact.save()
+        messages.success(request, 'Your message has been sent!')
+        
     return render(request, 'contact/contact.html')
 # about us
 def about_us(request):
@@ -23,9 +37,7 @@ def about_us(request):
 
 def dashboard_page(request):
     if request.user.is_authenticated:
-      return render(request, 'dashboard.html',{
-        'posts':posts
-       })
+      return render(request, 'dashboard.html')
     else:
         return render(request, 'register.html')
 
@@ -40,7 +52,7 @@ def register(request):
         pass2=request.POST.get('password2')
 
         if pass1!=pass2:
-            return HttpResponse("Your password and confrom password are not Same!!")
+            return HttpResponse("Your password and conform password are not Same!!")
         else:
 
             my_user=User.objects.create_user(uname,email,pass1)
