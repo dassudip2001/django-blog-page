@@ -1,5 +1,34 @@
 {% extends 'index.html' %}
 {% block title %} Update Post Page {% endblock title %}
 {% block body %}
-
+<div class="container">
+    <div class="card">
+       <div class="card-title text-center">
+           <h5>Update Post</h5>
+       </div>
+       <div class="modal-body">
+           <!-- form -->
+           <form action="" method="post">
+               {% csrf_token %}
+       
+               <h3>Update Post</h3>
+       
+               <label for="title">Title</label>
+               <input type="text" placeholder="title" name="title" id="title">
+               <br>
+       
+               <label for="formFile" class="form-label">Upload Photo</label>
+               <input class="form-control" type="file" name="photo" id="formFile">
+               <br>
+               <label for="Body">Body</label>
+               <input type="text" placeholder="Password" id="Body" name="Body">
+       
+       
+               <button type="submit">Update</button>
+              <a href="{% url 'dashboard_page'  %}">Dashboard</a>
+       
+           </form>
+       </div>
+   </div>   
+   </div>
 {% endblock body %}

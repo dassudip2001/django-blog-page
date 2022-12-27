@@ -4,89 +4,52 @@
 
 <div class="container">
     <div class="card-title mt-2">
-        
+        <div class="card-title">
+            <h5>Dashboard</h5>
+        </div>
+
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+        <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal"
             data-bs-target="#exampleModal">
             Add New Post
         </button>
 
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Posts Page
-                            </h1>
-                        <button type="button" class="btn-close"
-                            data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- form -->
-                        <form action="" method="post">
-                            {% csrf_token %} 
-                           
-                            <h3>Create  New Post</h3>
-                    
-                            <label for="title">Title</label>
-                            <input type="text" placeholder="title" name="title" id="title">
-                    
-                            <label for="formFile" class="form-label">Upload Photo</label>
-                            <input class="form-control" type="file" name="photo" id="formFile">
-                    
-                            <label for="Body">Body</label>
-                            <input type="text" placeholder="Password" id="Body" name="Body">
-                    
-                    
-                            <button type="submit">Create</button>
-                            
-                          
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary"
-                            data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save
-                            changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        Modal -->
+        <!--  -->
 
     </div>
     <div class="card-body">
         <table class="table">
             <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Title</th>
-                <th scope="col">Image</th>
-                <th scope="col">Content</th>
-                <th scope="col">More</th>
-              </tr>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Content</th>
+                    <th scope="col">More</th>
+                </tr>
             </thead>
             <tbody>
                 {% for student in posts %}
-              <tr>
-                <th scope="row">{{student.id}}</th>
-                <td>{{ student.title }}</td>
-                <td><img
-                    src="{{student.photo.url}}"
-                    class="card-img-top"
-                    alt="..."
-                    height="10%"
-                    width="40px"
-                  /></td>
-                <td>{{ student.Body | safe }}</td>
-                <td>
-                    <a href="">edit</a>
-                    <a href="">update</a>
-                </td>
-              </tr>
-              {% endfor %}
+                <tr>
+                    <th scope="row">{{student.id}}</th>
+                    <td>{{ student.title }}</td>
+                    <td><img
+                            src="{{student.photo.url}}"
+                            class="card-img-top"
+                            alt="..."
+                            height="10%"
+                            width="40px"
+                            /></td>
+                    <td>{{ student.Body | safe }}</td>
+                    <td>
+                        <a href="{% url 'update_post' student.id %}">edit</a>
+                        <a href="{% url 'delete_post' student.id %}">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
             </tbody>
-          </table>
+        </table>
     </div>
 </div>
 

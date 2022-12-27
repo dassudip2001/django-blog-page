@@ -84,13 +84,13 @@
 
                 {% if request.user.is_authenticated %}
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#"
+                  <a class="nav-link active" aria-current="page" href="{% url 'create_post'  %}"
                     >create Blog</a
                   >
                 </li>
                 
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="dashboard_page"
+                  <a class="nav-link active" aria-current="page" href="{% url 'dashboard_page'  %}"
                     >Dashboard</a
                   >
                 </li>

@@ -1,4 +1,4 @@
-from django.shortcuts import render,HttpResponse,redirect
+from django.shortcuts import render,HttpResponse,redirect,HttpResponseRedirect
 from .models import Post
 from django.contrib.auth.models import User
 from .models import Contact
@@ -46,14 +46,14 @@ def dashboard_page(request):
 # create new Post
 def post(request):
     if request.user.is_authenticated:
-       if request.method == 'POST':
-          title=request.POST.get('title')
-          photo=request.POST.get('photo')
-          Body=request.POST.get('Body')
-          post=Post(title=title,photo=photo, Body=Body, 
-          date=datetime.today())
-          post.save()
-          messages.success(request, 'Post Created Successfully!')
+    #    if request.method == 'POST':
+    #       title=request.POST.get('title')
+    #       photo=request.POST.get('photo')
+    #       Body=request.POST.get('Body')
+    #       post=Post(title=title,photo=photo, Body=Body, 
+    #       date=datetime.today())
+    #       post.save()
+    #       messages.success(request, 'Post Created Successfully!')
           return render(request, 'dashboard.html')
     else:
         return render(request, 'register.html')
@@ -107,3 +107,40 @@ def LogoutPage(request):
     logout(request)
     messages.success(request, 'Logout successfully!')
     return redirect('/')
+
+
+    #add post
+def create_post(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+          title=request.POST.get('title')
+          photo=request.POST.get('photo')
+          Body=request.POST.get('Body')
+          post=Post(title=title,photo=photo, Body=Body, 
+          date=datetime.today())
+          post.save()
+          messages.success(request, 'Post Created Successfully!')
+          
+
+          return redirect('/')
+    else:
+        return render(request, 'register.html')   
+
+
+    #update post
+def update_post(request,id):
+    if request.user.is_authenticated:
+        return render(request, 'post_page/update_post.html',) 
+    else:
+        return redirect('login')  
+
+
+def delete_post(request,id):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            pi=Post.objects.get(pk=id)
+            pi.delete()
+        return HttpResponseRedirect('/dashboard')    
+        # return redirect('/')
+    else:
+        return redirect('login')                

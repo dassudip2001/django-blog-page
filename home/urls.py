@@ -18,8 +18,10 @@ urlpatterns = [
     path('login/',views.LoginPage,name='login'),
     path('register',views.register, name="register"),
     path('logout/',views.LogoutPage,name='logout'),
-   
-    
+    path('update_post/<int:id>',views.update_post,name='update_post'),
+    path('delete_post/<int:id>',views.delete_post,name='delete_post'),
+    path('create_post/',views.create_post,name='create_post'),
+
 
 
 ]
