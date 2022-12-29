@@ -115,9 +115,9 @@ def create_post(request):
 
      if request.method == 'POST':
         title=request.POST.get('title')
-        photo=request.POST.get('photo')
+        # photo=request.POST.get('photo')
         body=request.POST.get('body')
-        post=Post(title=title,photo=photo,
+        post=Post(title=title,
         body=body, date=datetime.today())
         post.save()
         messages.success(request,' Post created successfully!!')
@@ -176,7 +176,7 @@ def delete_post(request,id):
 def update_post(request,id):
     post=Post.objects.get(id=id)
     post.name=request.POST['name']
-    post.photo=request.POST['photo']
+    # post.photo=request.POST['photo']
     post.description=request.POST['description']
     post.save()
     messages.success(request, 'update successfully')                      

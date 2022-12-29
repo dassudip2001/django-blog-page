@@ -27,14 +27,10 @@
                 <tr>
                     <th scope="row">{{student.id}}</th>
                     <td>{{ student.title }}</td>
-                    <td><img
-                            src="{{student.photo.url | safe}}"
-                            class="card-img-top"
-                            alt="..."
-                            height="10%"
-                            width="40px"
-                            /></td>
-                    <td>{{ student.Body | safe }}</td>
+                    <div class="container" style="height: 160px;">
+                    <td style="height: 160px;">{{ student.body | safe }}</td>
+                    </div>
+                    
                     <td>
                         <a href="{% url 'update_post' student.id %}">edit</a>
                         <a href="{% url 'delete_post' student.id %}">Delete</a>

@@ -5,7 +5,7 @@ from ckeditor.fields import RichTextField
 # post
 class Post(models.Model):
     title=models.CharField(max_length=225,null=True,blank=True)
-    photo= models.ImageField(upload_to="my_post")
+    
     body = RichTextField(blank=True, null=True)
     date=models.DateField(auto_now_add=True)
     def __str__(self):
