@@ -1,5 +1,8 @@
 from django.shortcuts import render,HttpResponse,redirect,HttpResponseRedirect
+
+from .forms import PostForm
 from .models import Post
+from django import forms
 from django.contrib.auth.models import User
 from .models import Contact
 from datetime import datetime
@@ -111,21 +114,25 @@ def LogoutPage(request):
 
     #add post
 def create_post(request):
+   # if request.method =="POST":
+   #    form=PostForm(request.POST)
+   #    if form.is_valid():
+   #       form.save()
+   # form=PostForm()
+   # return render(request,'post_page/create_post.html',{"form":form})
+
     if request.user.is_authenticated:
 
-     if request.method == 'POST':
-        title=request.POST.get('title')
-        # photo=request.POST.get('photo')
-        body=request.POST.get('body')
-        post=Post(title=title,
-        body=body, date=datetime.today())
-        post.save()
-        messages.success(request,' Post created successfully!!')
+        if request.method == "POST":
+            form = PostForm(request.POST)
+            if form.is_valid():
+                form.save()
+                messages.success(request,"Post credited successfully !!!!")
+        form = PostForm()
 
-        
-     return render(request, 'post_page/create_post.html')
+        return render(request, 'post_page/create_post.html', {"form": form})
     else:
-        return render(request, 'register.html')  
+        return render(request, 'register.html')
 
 
     # if request.method=='POST':
