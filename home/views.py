@@ -46,7 +46,7 @@ def dashboard_page(request):
 # create new Post
 def post(request):
     if request.user.is_authenticated:
-    #    if request.method == 'POST':
+    #   if request.method == 'POST':
     #       title=request.POST.get('title')
     #       photo=request.POST.get('photo')
     #       Body=request.POST.get('Body')
@@ -112,35 +112,71 @@ def LogoutPage(request):
     #add post
 def create_post(request):
     if request.user.is_authenticated:
-        if request.method == 'POST':
-          title=request.POST.get('title')
-          photo=request.POST.get('photo')
-          Body=request.POST.get('Body')
-          post=Post(title=title,photo=photo, Body=Body, 
-          date=datetime.today())
-          post.save()
-          messages.success(request, 'Post Created Successfully!')
+
+     if request.method == 'POST':
+        title=request.POST.get('title')
+        photo=request.POST.get('photo')
+        body=request.POST.get('body')
+        post=Post(title=title,photo=photo,
+        body=body, date=datetime.today())
+        post.save()
+        messages.success(request,' Post created successfully!!')
+
+        
+     return render(request, 'post_page/create_post.html')
+    else:
+        return render(request, 'register.html')  
+
+
+    # if request.method=='POST':
+
+    # if request.user.is_authenticated:
+        # if request.method == 'POST':
+        #   title=request.POST.get('title')
+        #   photo=request.POST.get('photo')
+        #   Body=request.POST.get('Body')
+        #   post=Post(title=title,photo=photo, Body=Body, 
+        #   date=datetime.today())
+        #   post.save()
+        #   messages.success(request, 'Post Created Successfully!')
           
 
-          return redirect('/')
-    else:
-        return render(request, 'register.html')   
+    #       return render(request, 'post_page/create_post.html') 
+    # else:
+    #     return render(request, 'register.html')   
 
 
-    #update post
-def update_post(request,id):
+    #edit post
+def edit_post(request,id):
     if request.user.is_authenticated:
-        return render(request, 'post_page/update_post.html',) 
+        sel_item=Post.objects.get(id=id)
+        item_list=Post.objects.all()
+        context={
+            'sel_item':sel_item,
+            'item_list':item_list
+        }
+        return render(request, 'post_page/update_post.html',context) 
     else:
         return redirect('login')  
 
 
 def delete_post(request,id):
     if request.user.is_authenticated:
-        if request.method == 'POST':
-            pi=Post.objects.get(pk=id)
-            pi.delete()
-        return HttpResponseRedirect('/dashboard')    
+        post=Post.objects.get(id=id)
+        post.delete()
+        # return redirect('/') 
+        return render(request, 'dashboard.html')
+        messages.success(request, "Post deleted successfully")  
         # return redirect('/')
     else:
-        return redirect('login')                
+        return redirect('login')  
+
+
+# update
+def update_post(request,id):
+    post=Post.objects.get(id=id)
+    post.name=request.POST['name']
+    post.photo=request.POST['photo']
+    post.description=request.POST['description']
+    post.save()
+    messages.success(request, 'update successfully')                      

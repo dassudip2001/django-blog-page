@@ -8,14 +8,7 @@
             <h5>Dashboard</h5>
         </div>
 
-        <!-- Button trigger modal -->
-        <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-            data-bs-target="#exampleModal">
-            Add New Post
-        </button>
-
-        Modal -->
-        <!--  -->
+        
 
     </div>
     <div class="card-body">
@@ -35,7 +28,7 @@
                     <th scope="row">{{student.id}}</th>
                     <td>{{ student.title }}</td>
                     <td><img
-                            src="{{student.photo.url}}"
+                            src="{{student.photo.url | safe}}"
                             class="card-img-top"
                             alt="..."
                             height="10%"
