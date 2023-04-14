@@ -12,12 +12,12 @@
 </div>
 <div class="container mt-2">
   <div class="card-group">
+    {% for student in posts %}
     <div class="card">
-      {% for student in posts %}
       <div class="card-title">
         <h5 class="mt-4 m-4">{{ student.title }}</h5>
       </div>
-      
+
       <div class="card-body">
         <h5 class="card-title"></h5>
         <!-- <td class="col-md-1"><img id="IMG" src="  ></td>  -->
@@ -29,7 +29,5 @@
     {% endfor %}
   </div>
 </div>
-
-
 
 {% endblock body %}

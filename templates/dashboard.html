@@ -31,10 +31,16 @@
                         <td style="height: 160px;">{{ student.body | safe }}</td>
                         
                         
+                        {% if user.is_authenticated %}
+                        {% if user.id == student.user.id %}
                         <td>
                             <a class="btn btn-primary" href="{% url 'update_post' student.id %}">edit</a>
                             <a class="btn btn-danger" href="{% url 'delete_post' student.id %}">Delete</a>
                         </td>
+                        {%  endif %}
+                        {%  endif %}
+
+
                     </tr>
                     {% endfor %}
                 </tbody>

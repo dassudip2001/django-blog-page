@@ -102,7 +102,6 @@ def LoginPage(request):
     return render(request, 'login.html')
 
 
-
 def LogoutPage(request):
     logout(request)
     messages.success(request, 'Logout successfully!')
@@ -111,6 +110,7 @@ def LogoutPage(request):
     # add post
 
 
+@login_required
 def create_post(request):
     if request.user.is_authenticated:
 
@@ -126,50 +126,36 @@ def create_post(request):
         return render(request, 'register.html')
 
 
-# edit #
-# def edit_post(request, id):
-#     if request.user.is_authenticated:
-#         title = body = "not available"
-#         for data in Post.objects.filter(id=id):
-#             title = data.title
-#             body = data.body
-#         return render(request, 'post_page/update_post.html', {'title': title, 'body': body})
-#
-#     else:
-#         return redirect('login')
-
+@login_required
 def update_post(request, id):
     employee = get_object_or_404(Post, pk=id)
-    if request.method == 'POST':
-        employee.title = request.POST['title']
-        employee.body = request.POST['body']
+    if request.user.id == employee.user.id:
+        form = PostForm(request.POST or None, instance=employee)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Post credited successfully !!!!")
+            return render('/')
+        # if request.method == "POST":
+        #     form = PostForm(request.POST)
+        #     if form.is_valid():
+        #         form.save()
+        #         messages.success(request, "Post credited successfully !!!!")
+        #     form = PostForm()
+        return render(request, 'post_page/update_post.html', {'employee': employee, 'form': form})
+        # if request.method == 'POST':
+        #     employee.title = request.POST['title']
+        #     employee.body = request.POST['body']
 
-        employee.save()
-        messages.success(request, 'update successfully')
-        return redirect('/', pk=employee.pk)
+        #     employee.save()
+        #     messages.success(request, 'update successfully')
+        #     return redirect('/', pk=employee.pk)
+        # else:
+        #     return render(request, 'post_page/update_post.html', {'employee': employee})
     else:
-        return render(request, 'post_page/update_post.html', {'employee': employee})
+        return HttpResponse("You do not have permission to edit this post")
 
 
-
-# def update_post(request,id):
-#     if request.user.is_authenticated:
-#         post=Post.objects.get(id=id)
-#         post.title=request.POST['title']
-#         post.body=request.POST['body']
-#
-#         post.update()
-#         messages.success(request, 'update successfully')
-#
-#         return redirect('dashboard_page')
-#     else:
-#         return redirect('login')
-
-
-
-
-
-
+@login_required
 def delete_post(request, id):
     if request.user.is_authenticated:
         post = Post.objects.get(id=id)
@@ -180,5 +166,3 @@ def delete_post(request, id):
         return redirect('dashboard_page')
     else:
         return redirect('login')
-
-

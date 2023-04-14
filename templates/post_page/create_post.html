@@ -1,28 +1,25 @@
-{% extends 'index.html' %}
-{% block title %}Create Post Page {% endblock title %}
-{% block body %}
+{% extends 'index.html' %} 
+{% block title %}Create Post Page {% endblock title%}
+ {% block body %}
 <div class="container mt-2">
- <div class="card">
+  <div class="card">
     <div class="card-title text-center">
-        <h5>Create Post</h5>
-        <hr>
-
+      <h5>Create Post</h5>
+      <hr />
     </div>
     <div class="modal-body">
-
-        <!-- form -->
-        <form action="" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-                {{form.as_p}}
-                {{form.media}}
-            <button class="btn btn-primary" type="submit">Create</button>
-           <a style="text-decoration:none;" href="{% url 'dashboard_page'  %}">Dashboard</a>
-    
-        </form>
-
+      <!-- form -->
+      <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %} 
+        {{form.as_p}}
+         {{form.media}}
+        <button class="btn btn-primary" type="submit">Create</button>
+        <a style="text-decoration: none" href="{% url 'dashboard_page'  %}"
+          >Dashboard</a
+        >
+      </form>
     </div>
-</div>   
+  </div>
 </div>
-
 
 {% endblock body %}

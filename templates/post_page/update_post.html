@@ -1,5 +1,5 @@
-{% extends 'index.html' %}
-{% block title %} Update Post Page {% endblock title%}
+{% extends 'index.html' %} 
+{% block title %} Update Post Page {% endblock title%} 
 {% block body %}
 <div class="container mt-2">
   <div class="card">
@@ -9,9 +9,12 @@
     </div>
     <div class="modal-body">
       <!-- form -->
-      <form action="" method="post">
+      <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <div class="mb-3">
+        <!-- {{employee}} -->
+        {{ form.media}} 
+        {{ form.as_p }}
+        <!-- <div class="mb-3">
           <label for="title" class="form-label">Title</label>
           <input
             type="text"
@@ -32,11 +35,9 @@
             value="{{ employee.body }}"
             placeholder="body"
           />
-        </div>
+        </div> -->
 
-        <button type="submit" class="btn btn-primary" >
-          Update
-        </button>
+        <button type="submit" class="btn btn-primary">Update</button>
 
         <a href="{% url 'dashboard_page'  %}">Dashboard</a>
       </form>
