@@ -34,19 +34,19 @@ body{
     border-radius: 50%;
 }
 .shape:first-child{
-    background: linear-gradient(
-        #1845ad,
-        #23a2f6
-    );
+<!--    background: linear-gradient(-->
+<!--        #1845ad,-->
+<!--        #23a2f6-->
+<!--    );-->
     left: -80px;
     top: -80px;
 }
 .shape:last-child{
-    background: linear-gradient(
-        to right,
-        #ff512f,
-        #f09819
-    );
+<!--    background: linear-gradient(-->
+<!--        to right,-->
+<!--        #ff512f,-->
+<!--        #f09819-->
+<!--    );-->
     right: -30px;
     bottom: -80px;
 }
@@ -140,7 +140,7 @@ button{
         <div class="shape"></div>
     </div>
     <form method="post">
-        <h3>Login Here</h3>
+        <h3>Login</h3>
         {% csrf_token %} 
         <label for="username">Username</label>
         <input type="text" placeholder="Enter Username" id="username" name="username">
@@ -154,7 +154,7 @@ button{
           <div class="go"><i class="fab fa-google"></i>  Google</div>
           <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
         </div> -->
-        <a href="{% url 'register' %}" >Create a account</a>
+        <a style="text-decoration:none;" href="{% url 'register' %}" >Create a account</a>
     </form>
 </body>
 </html>

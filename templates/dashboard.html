@@ -2,43 +2,44 @@
 {% block title %}Dashboard Page {% endblock title %}
 {% block body %}
 
-<div class="container">
-    <div class="card-title mt-2">
-        <div class="card-title">
-            <h5>Dashboard</h5>
+<div class="container mt-3">
+    <div class="card">
+
+        <div class="card-title mt-2">
+            <div class="card-title">
+                <h5 class="mx-2">Dashboard</h5>
+                <hr>
+            </div>
         </div>
-
-        
-
-    </div>
-    <div class="card-body">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Image</th>
-                    <th scope="col">Content</th>
-                    <th scope="col">More</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for student in posts %}
-                <tr>
-                    <th scope="row">{{student.id}}</th>
-                    <td>{{ student.title }}</td>
-                    <div class="container" style="height: 160px;">
-                    <td style="height: 160px;">{{ student.body | safe }}</td>
-                    </div>
-                    
-                    <td>
-                        <a href="{% url 'update_post' student.id %}">edit</a>
-                        <a href="{% url 'delete_post' student.id %}">Delete</a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <div class="card-body">
+            <table class="table  >
+                <thead class=table table-primary">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+    
+                        <th scope="col">Content</th>
+                        <th scope="col">More</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in posts %}
+                    <tr>
+                        <th scope="row">{{student.id}}</th>
+                        <td>{{ student.title }}</td>
+                        <!-- <div class="container" style="height: 160px;"> -->
+                        <td style="height: 160px;">{{ student.body | safe }}</td>
+                        
+                        
+                        <td>
+                            <a class="btn btn-primary" href="{% url 'update_post' student.id %}">edit</a>
+                            <a class="btn btn-danger" href="{% url 'delete_post' student.id %}">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 

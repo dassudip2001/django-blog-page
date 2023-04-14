@@ -34,19 +34,19 @@ body{
     border-radius: 50%;
 }
 .shape:first-child{
-    background: linear-gradient(
-        #1845ad,
-        #23a2f6
-    );
+<!--    background: linear-gradient(-->
+<!--        #1845ad,-->
+<!--        #23a2f6-->
+<!--    );-->
     left: -80px;
     top: -80px;
 }
 .shape:last-child{
-    background: linear-gradient(
-        to right,
-        #ff512f,
-        #f09819
-    );
+<!--    background: linear-gradient(-->
+<!--        to right,-->
+<!--        #ff512f,-->
+<!--        #f09819-->
+<!--    );-->
     right: -30px;
     bottom: -80px;
 }
@@ -141,7 +141,7 @@ button{
     </div>
     <form action="" method="post">
         {% csrf_token %} 
-        <h3>Signup Here</h3>
+        <h3>Register</h3>
 
         <label for="username">Username</label>
         <input type="text" placeholder="Username" name="username" id="username">
@@ -157,7 +157,7 @@ button{
         <input type="password" placeholder="Confrom Password" id="password2" name="password2">
         <button type="submit">Signup</button>
         
-        <a href="{% url 'login' %}" >i have already account</a>
+        <a class="mt-3" style="text-decoration:none; margin-top:10px" href="{% url 'login' %}" >i have already account</a>
     </form>
 </body>
 </html>

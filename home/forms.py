@@ -1,11 +1,8 @@
 from django import forms
-from django.shortcuts import render
-
-from .models import *
+from .models import Post
 
 
 class PostForm(forms.ModelForm):
     class Meta:
-        model=Post
-        fields="__all__"
-        
+        model = Post
+        fields = ('title', 'body')
