@@ -134,23 +134,10 @@ def update_post(request, id):
         if form.is_valid():
             form.save()
             messages.success(request, "Post credited successfully !!!!")
-            return render('/')
-        # if request.method == "POST":
-        #     form = PostForm(request.POST)
-        #     if form.is_valid():
-        #         form.save()
-        #         messages.success(request, "Post credited successfully !!!!")
-        #     form = PostForm()
+            return redirect('/')
+       
         return render(request, 'post_page/update_post.html', {'employee': employee, 'form': form})
-        # if request.method == 'POST':
-        #     employee.title = request.POST['title']
-        #     employee.body = request.POST['body']
-
-        #     employee.save()
-        #     messages.success(request, 'update successfully')
-        #     return redirect('/', pk=employee.pk)
-        # else:
-        #     return render(request, 'post_page/update_post.html', {'employee': employee})
+        
     else:
         return HttpResponse("You do not have permission to edit this post")
 
