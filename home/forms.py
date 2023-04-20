@@ -5,14 +5,17 @@ from .models import Post
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'body')
+        fields = ('title','user', 'body')
         labels = {
             'title': '',
+            
             'body': '',
         }
         widgets = {
             'title': forms.TextInput(attrs={'level': '1', 'placeholder': 'Enter a title','title': 'Enter a title','class': 'form-control'}),
+            'user': forms.Select(attrs={'class': 'form-control', 'value':'', 'id':'elder'}),
             'body': forms.Textarea(attrs={'class': 'form-control'}),
+
 
             
             #  title = forms.CharField(label='Name', max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))

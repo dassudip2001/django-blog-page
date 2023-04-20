@@ -1,5 +1,4 @@
-{% extends 'index.html' %}
- {% block title %}Create Post Page {% endblock title%}
+{% extends 'index.html' %} {% block title %}Create Post Page {% endblock title%}
 {% block body %}
 <div class="container mt-2">
   <div class="card">
@@ -10,13 +9,16 @@
     <div class="modal-body">
       <!-- form -->
       <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        
-        {{form.as_p}} {{form.media}}
+        {% csrf_token %} {{form.as_p}} {{form.media}}
         <button class="btn btn-primary" type="submit">Create</button>
         <a style="text-decoration: none" href="{% url 'dashboard_page'  %}"
           >Dashboard</a
         >
+
+        <script>
+          var name = "{{ user.id}}";
+          document.getElementById("elder").value = name;
+        </script>
       </form>
     </div>
   </div>
