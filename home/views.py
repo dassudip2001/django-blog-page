@@ -141,6 +141,10 @@ def update_post(request, id):
     else:
         return HttpResponse("You do not have permission to edit this post")
 
+# show by id 
+def show_post(request, id):
+    post = Post.objects.get(id=id)
+    return render(request, 'post_page/show.html', {'post': post})
 
 @login_required
 def delete_post(request, id):

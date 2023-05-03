@@ -23,6 +23,7 @@ urlpatterns = [
 
     path('delete_post/<int:id>',views.delete_post,name='delete_post'),
     path('create_post/',views.create_post,name='create_post'),
+    path('show_post/<int:id>',views.show_post,name='show_post'),
 
 
 
